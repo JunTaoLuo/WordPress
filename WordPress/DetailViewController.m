@@ -15,6 +15,8 @@
 
 @implementation DetailViewController
 
+@synthesize usersBlogs;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -38,6 +40,39 @@
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
+    
+    NSURL * xmlrpc = [NSURL URLWithString:@"https://wordpress.com/xmlrpc.php"];
+    
+    AFXMLRPCClient *api = [AFXMLRPCClient clientWithXMLRPCEndpoint:xmlrpc];
+    [api callMethod:@"wp.getUsersBlogs"
+         parameters:[NSArray arrayWithObjects:@"whitehawkworks", @"5percent", nil]
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                //usersBlogs = [responseObject retain];
+                //hasCompletedGetUsersBlogs = YES;
+                if(usersBlogs.count > 0) {
+                    // TODO: Store blog list in Core Data
+                    [[NSUserDefaults standardUserDefaults] setObject:usersBlogs forKey:@"WPcomUsersBlogs"];
+                    [usersBlogs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        NSString *title = [obj valueForKey:@"blogName"];
+                        title = [title stringByDecodingXMLCharacters];
+                        [obj setValue:title forKey:@"blogName"];
+                    }];
+                }
+                //[self.tableView reloadData];
+                self.blogLabel.text = @"Login succeeded";
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                WPFLog(@"Failed getting user blogs: %@", [error localizedDescription]);
+                //hasCompletedGetUsersBlogs = YES;
+                //[self.tableView reloadData];
+                self.blogLabel.text = @"Login failed";
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry, can't log in", @"")
+                                                                    message:[error localizedDescription]
+                                                                   delegate:self
+                                                          cancelButtonTitle:NSLocalizedString(@"Need Help?", @"")
+                                                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil];
+                [alertView show];
+            }];
+
 }
 
 - (void)viewDidLoad

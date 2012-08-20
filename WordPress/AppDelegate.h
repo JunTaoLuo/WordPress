@@ -11,5 +11,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, assign) BOOL isWPcomAuthenticated;
+
++ (AppDelegate *)sharedWordPressApp;
+
+- (void)registerForPushNotifications;
+- (void)unregisterApnsToken;
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
 
 @end

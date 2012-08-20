@@ -7,8 +7,22 @@
 //
 
 #import "AppDelegate.h"
+#import "AFXMLRPCClient.h"
+#import "SFHFKeychainUtils.h"
 
 @implementation AppDelegate
+
+static AppDelegate *wordPressApp = NULL;
+
+@synthesize isWPcomAuthenticated;
+
++ (AppDelegate *)sharedWordPressApp {
+    if (!wordPressApp) {
+        wordPressApp = [[AppDelegate alloc] init];
+    }
+    
+    return wordPressApp;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -47,5 +61,68 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
+	WPLog(@"Showing alert with title: %@", message);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Need Help?", @"'Need help?' button label, links off to the WP for iOS FAQ.")
+                                          otherButtonTitles:NSLocalizedString(@"OK", @"OK button label."), nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)registerForPushNotifications {
+    if (isWPcomAuthenticated) {
+        [[UIApplication sharedApplication]
+         registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                             UIRemoteNotificationTypeSound |
+                                             UIRemoteNotificationTypeAlert)];
+    }
+}
+
+- (void)unregisterApnsToken {
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"apnsDeviceToken"];
+    if( nil == token ) return; //no apns token available
+    
+    NSString *authURL = kNotificationAuthURL;
+    NSError *error = nil;
+	if([[NSUserDefaults standardUserDefaults] objectForKey:@"wpcom_username_preference"] != nil) {
+        NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"wpcom_username_preference"];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"wpcom_password_preference"] != nil) {
+            // Migrate password to keychain
+            [SFHFKeychainUtils storeUsername:username
+                                 andPassword:[[NSUserDefaults standardUserDefaults] objectForKey:@"wpcom_password_preference"]
+                              forServiceName:@"WordPress.com"
+                              updateExisting:YES error:&error];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"wpcom_password_preference"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        NSString *password = [SFHFKeychainUtils getPasswordForUsername:username
+                                                        andServiceName:@"WordPress.com"
+                                                                 error:&error];
+        if (password != nil) {
+#ifdef DEBUG
+            NSNumber *sandbox = [NSNumber numberWithBool:YES];
+#else
+            NSNumber *sandbox = [NSNumber numberWithBool:NO];
+#endif
+            AFXMLRPCClient *api = [[AFXMLRPCClient alloc] initWithXMLRPCEndpoint:[NSURL URLWithString:authURL]];
+            [api callMethod:@"wpcom.mobile_push_unregister_token"
+                 parameters:[NSArray arrayWithObjects:username, password, token, [[UIDevice currentDevice] uniqueIdentifier], @"apple", sandbox, nil]
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        WPFLog(@"Unregistered token %@", token);
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        WPFLog(@"Couldn't unregister token: %@", [error localizedDescription]);
+                    }];
+            [api release];
+        }
+	}
+}
+
 
 @end
