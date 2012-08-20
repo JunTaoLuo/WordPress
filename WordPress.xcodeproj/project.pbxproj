@@ -57,16 +57,16 @@
 		46D13DAA15E2769F00B3037B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D13DA915E2769E00B3037B /* Security.framework */; };
 		46D13DAD15E276FD00B3037B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D13DAC15E276FC00B3037B /* libiconv.dylib */; };
 		46D13DB015E27CC200B3037B /* NSString+XMLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DAF15E27CC200B3037B /* NSString+XMLExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		46D13DD415E2892200B3037B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC015E2892200B3037B /* AFHTTPClient.m */; };
-		46D13DD515E2892200B3037B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC215E2892200B3037B /* AFHTTPRequestOperation.m */; };
-		46D13DD615E2892200B3037B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC415E2892200B3037B /* AFImageRequestOperation.m */; };
-		46D13DD715E2892200B3037B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC615E2892200B3037B /* AFJSONRequestOperation.m */; };
-		46D13DD815E2892200B3037B /* AFJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC815E2892200B3037B /* AFJSONUtilities.m */; };
-		46D13DD915E2892200B3037B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCA15E2892200B3037B /* AFNetworkActivityIndicatorManager.m */; };
-		46D13DDA15E2892200B3037B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCD15E2892200B3037B /* AFPropertyListRequestOperation.m */; };
-		46D13DDB15E2892200B3037B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCF15E2892200B3037B /* AFURLConnectionOperation.m */; };
-		46D13DDC15E2892200B3037B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DD115E2892200B3037B /* AFXMLRequestOperation.m */; };
-		46D13DDD15E2892200B3037B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DD315E2892200B3037B /* UIImageView+AFNetworking.m */; };
+		46D13DD415E2892200B3037B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC015E2892200B3037B /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DD515E2892200B3037B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC215E2892200B3037B /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DD615E2892200B3037B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC415E2892200B3037B /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DD715E2892200B3037B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC615E2892200B3037B /* AFJSONRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DD815E2892200B3037B /* AFJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DC815E2892200B3037B /* AFJSONUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DD915E2892200B3037B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCA15E2892200B3037B /* AFNetworkActivityIndicatorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DDA15E2892200B3037B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCD15E2892200B3037B /* AFPropertyListRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DDB15E2892200B3037B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DCF15E2892200B3037B /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DDC15E2892200B3037B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DD115E2892200B3037B /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		46D13DDD15E2892200B3037B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D13DD315E2892200B3037B /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
