@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46C305DD15FF01E7003D11B3 /* PostTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C305DC15FF01E7003D11B3 /* PostTableView.m */; };
+		46C305E115FF089D003D11B3 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C305E015FF089D003D11B3 /* PostViewController.m */; };
+		46C305E815FF1094003D11B3 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C305E715FF1093003D11B3 /* NewPostViewController.m */; };
 		46D13C6A15E2639700B3037B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D13C6915E2639700B3037B /* UIKit.framework */; };
 		46D13C6C15E2639700B3037B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D13C6B15E2639700B3037B /* Foundation.framework */; };
 		46D13C6E15E2639700B3037B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D13C6D15E2639700B3037B /* CoreGraphics.framework */; };
@@ -80,6 +83,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46C305DB15FF01E7003D11B3 /* PostTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableView.h; sourceTree = "<group>"; };
+		46C305DC15FF01E7003D11B3 /* PostTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableView.m; sourceTree = "<group>"; };
+		46C305DF15FF089D003D11B3 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		46C305E015FF089D003D11B3 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		46C305E615FF1093003D11B3 /* NewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
+		46C305E715FF1093003D11B3 /* NewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		46D13C6515E2639700B3037B /* WordPress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D13C6915E2639700B3037B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46D13C6B15E2639700B3037B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +235,7 @@
 		46D13C5A15E2639700B3037B = {
 			isa = PBXGroup;
 			children = (
+				46D13C7015E2639700B3037B /* Supporting Files */,
 				46D13D8615E2697700B3037B /* Classes */,
 				46D13D6215E2672A00B3037B /* Other Sources */,
 				46D13CB115E264B100B3037B /* Vendor */,
@@ -271,7 +281,12 @@
 				46D13C8215E2639700B3037B /* MasterViewController.m */,
 				46D13C8415E2639700B3037B /* DetailViewController.h */,
 				46D13C8515E2639700B3037B /* DetailViewController.m */,
-				46D13C7015E2639700B3037B /* Supporting Files */,
+				46C305DB15FF01E7003D11B3 /* PostTableView.h */,
+				46C305DC15FF01E7003D11B3 /* PostTableView.m */,
+				46C305DF15FF089D003D11B3 /* PostViewController.h */,
+				46C305E015FF089D003D11B3 /* PostViewController.m */,
+				46C305E615FF1093003D11B3 /* NewPostViewController.h */,
+				46C305E715FF1093003D11B3 /* NewPostViewController.m */,
 			);
 			path = WordPress;
 			sourceTree = "<group>";
@@ -286,6 +301,7 @@
 				46D13C7715E2639700B3037B /* WordPress-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = WordPress;
 			sourceTree = "<group>";
 		};
 		46D13C9315E2639700B3037B /* WordPressTests */ = {
@@ -634,6 +650,9 @@
 				46D13DDB15E2892200B3037B /* AFURLConnectionOperation.m in Sources */,
 				46D13DDC15E2892200B3037B /* AFXMLRequestOperation.m in Sources */,
 				46D13DDD15E2892200B3037B /* UIImageView+AFNetworking.m in Sources */,
+				46C305DD15FF01E7003D11B3 /* PostTableView.m in Sources */,
+				46C305E115FF089D003D11B3 /* PostViewController.m in Sources */,
+				46C305E815FF1094003D11B3 /* NewPostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,8 +78,10 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object description];
+//    NSDate *object = [_objects objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [object description];
+    NSString * displayText = @"White Hawk Works";
+    cell.textLabel.text = displayText;
     return cell;
 }
 
@@ -118,17 +120,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
-        self.detailViewController.detailItem = object;
+//        NSDate *object = [_objects objectAtIndex:indexPath.row];
+//        self.detailViewController.detailItem = object;
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        [[segue destinationViewController] loginWithUsername:@"whitehawkworks" andPassword:@"5percent"];
+//        NSDate *object = [_objects objectAtIndex:indexPath.row];
+//        [[segue destinationViewController] setDetailItem:object];
     }
 }
 
