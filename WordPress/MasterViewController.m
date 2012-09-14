@@ -57,9 +57,31 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login to your blog"
+                                                      message:nil
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"Continue", nil];
+    
+    [message setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
+    [message show];
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Continue"]) {
+        NSMutableDictionary * blog = [NSMutableDictionary dictionary];
+        [blog setValue: [alertView textFieldAtIndex:0].text forKey:@"username"];
+        [blog setValue: [alertView textFieldAtIndex:1].text forKey:@"password"];
+        currentBlog = blog;
+        [_objects insertObject:currentBlog atIndex:_objects.count];
+    
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_objects.count-1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
 }
 
 #pragma mark - Table View
@@ -80,7 +102,7 @@
 
 //    NSDate *object = [_objects objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [object description];
-    NSString * displayText = @"White Hawk Works";
+    NSString * displayText = [[_objects objectAtIndex:indexPath.row] valueForKey:@"username"];
     cell.textLabel.text = displayText;
     return cell;
 }
@@ -119,17 +141,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDate *object = [_objects objectAtIndex:indexPath.row];
-//        self.detailViewController.detailItem = object;
-    }
+//    currentBlog = [_objects objectAtIndex:indexPath.row];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] loginWithUsername:@"whitehawkworks" andPassword:@"5percent"];
+        currentBlog = [_objects objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        [[segue destinationViewController] loginWithUsername:[currentBlog valueForKey:@"username"] andPassword:[currentBlog valueForKey:@"password"]];
 //        NSDate *object = [_objects objectAtIndex:indexPath.row];
 //        [[segue destinationViewController] setDetailItem:object];
     }

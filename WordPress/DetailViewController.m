@@ -172,6 +172,7 @@
         [[segue destinationViewController] setPosts:usersPosts];
         [[segue destinationViewController] setBlogNum:blogNum];
         [[segue destinationViewController] setXMLRPC:self.blogXMLRPC];
+        [[segue destinationViewController] setUsername:blogUsername andPassword:blogPassword];
     }
 }
 

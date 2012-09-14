@@ -10,7 +10,10 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController<UIAlertViewDelegate>
+{
+    NSMutableDictionary * currentBlog;
+}
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
