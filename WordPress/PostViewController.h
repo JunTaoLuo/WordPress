@@ -10,8 +10,10 @@
 
 @interface PostViewController : UIViewController
 {
-    IBOutlet UITextField * postText;
-    IBOutlet UILabel * postTitle;
+    IBOutlet UITextView * postContent;
+    
+    NSString * postText;
+    NSString * postTitle;
 }
 
 -(void) setText:(NSString*)text andTitle:(NSString*)title;

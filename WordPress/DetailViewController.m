@@ -17,6 +17,7 @@
 
 @synthesize usersBlogs;
 @synthesize usersPosts;
+@synthesize blogXMLRPC;
 
 #pragma mark - Managing the detail item
 
@@ -44,9 +45,6 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    
-    loginSuccessful = false;
-    
     //NSURL * xmlrpc = [NSURL URLWithString:@"http://workplaceone.ca/forum/xmlrpc.php"];
     NSURL * xmlrpc = [NSURL URLWithString:@"https://wordpress.com/xmlrpc.php"];
     
@@ -73,13 +71,9 @@
                 //[self.tableView reloadData];
                 self.blogLabel.text = textToDisplay;
                 blogNum = [[[usersBlogs objectAtIndex:0] valueForKey:@"blogid"] intValue];
-                NSLog(@"Blog Number %d", blogNum);
-                blogID = [[usersBlogs objectAtIndex:0] valueForKey:@"blogid"];
-                loginSuccessful = true;
-                [viewPosts setEnabled:YES];
-                [viewPosts setHidden:NO];
+                self.blogXMLRPC = (NSString*)[[usersBlogs objectAtIndex:0] valueForKey:@"xmlrpc"];
                 [newPost setEnabled:YES];
-                [newPost setHidden:NO];
+                [newPost setAlpha:1.0];
                 [self onSuccessfulLogin];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 WPFLog(@"Failed getting user blogs: %@", [error localizedDescription]);
@@ -99,17 +93,13 @@
 {
     NSURL * xmlrpc = [NSURL URLWithString:[[usersBlogs objectAtIndex:0] valueForKey:@"xmlrpc"]];
     AFXMLRPCClient *api = [AFXMLRPCClient clientWithXMLRPCEndpoint:xmlrpc];
-    NSArray *parameters = [NSArray arrayWithObjects: [NSNumber numberWithInt:blogNum], @"whitehawkworks", @"5percent", [NSNumber numberWithInt:40], nil];
+    NSArray *parameters = [NSArray arrayWithObjects: [NSNumber numberWithInt:blogNum], blogUsername, blogPassword, [NSNumber numberWithInt:40], nil];
     AFXMLRPCRequest *request = [api XMLRPCRequestWithMethod:@"metaWeblog.getRecentPosts" parameters:parameters];
     AFXMLRPCRequestOperation *operation = [api XMLRPCRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         usersPosts = (NSArray *)responseObject;
-//        
-//        if (usersPosts.count > 0) {
-//            [self displayPosts];
-//        }
-//        
-//        postTableViewController.posts = usersPosts;
+        [viewPosts setEnabled:YES];
+        [viewPosts setAlpha:1.0];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         WPFLog(@"Failed getting user posts: %@", [error localizedDescription]);
@@ -181,6 +171,7 @@
     {
         [[segue destinationViewController] setPosts:usersPosts];
         [[segue destinationViewController] setBlogNum:blogNum];
+        [[segue destinationViewController] setXMLRPC:self.blogXMLRPC];
     }
 }
 

@@ -20,15 +20,11 @@
     
     NSArray *usersBlogs;
     NSArray *userPosts;
-    
     int blogNum;
-    NSNumber * blogID;
-    bool loginSuccessful;
-    
+
     // bad naming, this is actually a controller
     PostTableView * postTableViewController;
-    
-    IBOutlet UIView * postTableView;
+
     IBOutlet UIButton * viewPosts;
     IBOutlet UIButton * newPost;
 }
@@ -40,6 +36,7 @@
 //@property (strong, nonatomic) id detailItem;
 @property (nonatomic, retain) NSArray *usersBlogs;
 @property (nonatomic, retain) NSArray *usersPosts;
+@property (nonatomic, retain) NSString *blogXMLRPC;
 
 @property (weak, nonatomic) IBOutlet UILabel *blogLabel;
 @end

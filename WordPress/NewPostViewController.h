@@ -15,12 +15,17 @@
     IBOutlet UITextView * postText;
     NSArray * posts;
     int blogNum;
+    NSString * xmlrpc;
+    NSString * username;
+    NSString * password;
 }
 
 @property (nonatomic, retain) NSArray *posts;
 
 -(void) setPosts: (NSArray *) userPosts;
 -(void) setBlogNum: (int) blogNumber;
+-(void) setXMLRPC: (NSString *) xmlrpcTarget;
+-(void) setUsername: (NSString *) blogUsername andPassword: (NSString *) blogPassword;
 -(IBAction)post:(id)sender;
 
 @end

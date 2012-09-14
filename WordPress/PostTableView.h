@@ -12,6 +12,7 @@
 @interface PostTableView : UITableViewController
 {
     NSArray * posts;
+    PostViewController * postViewController;
 }
 
 -(void) setPosts: (NSArray *) userPosts;
